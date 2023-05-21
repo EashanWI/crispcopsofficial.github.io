@@ -20,6 +20,7 @@ import BidReport from './components/BiddingManagmentSystem/BidReport';
 import SelectedBid from './components/BiddingManagmentSystem/SelectedBid';
 import BidReportAdmin from "./components/BiddingManagmentSystem/BidReportAdmin";
 import BidDetails from "./components/BiddingManagmentSystem/BidDetails";
+import BidDetailsFarmer from './components/BiddingManagmentSystem/BidDetailsFarmer';
 import Home from "./components/Home";
 import BidStore from './components/BiddingManagmentSystem/BidStore';
 
@@ -126,12 +127,13 @@ function App() {
 
 
             {/* Bidding Managment System */}
-            <Route path = '/createbid' exact element = {<CreateBids/>}></Route>
+            <Route path = '/createbid/:idNo' exact element = {<CreateBids/>}></Route>
             <Route path = '/biddetails' exact element = {<BiddingDetailsFarmer/>}></Route>
             <Route path = '/setpricebid/:bidID' exact element = {<SetPrice/>}></Route>
             <Route path = '/selectedbid/:id' exact element = {<SelectedBid/>}></Route>
-            <Route path = '/genaratereportbid' exact element = {<BidReport/>}></Route>
+            <Route path = '/genaratereportbid/:idNo' exact element = {<BidReport/>}></Route>
             <Route path = '/biddetails/:id' exact element = {<BidDetails/>}></Route>
+            <Route path = '/biddetailsfarmer/:id' exact element = {<BidDetailsFarmer/>}></Route>
             <Route path = '/bidstore' exact element = {<BidStore/>}></Route>
 
 

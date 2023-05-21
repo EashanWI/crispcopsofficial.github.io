@@ -45,6 +45,16 @@ const biddingSchema = new Schema(
         phone : {
             type : Number,
             required :true
+        },
+
+        cusName : {
+            type : String,
+            required :true
+        },
+
+        cusPhone : {
+            type : String,
+            required :true
         }
     }
 )

@@ -41,6 +41,8 @@ export default function FarmerProfile(){
         })
     }
 
+    let idNo =farmerDetails.nic;
+
     return(
         <div className="container farmerProfile">
         <div className="row">
@@ -52,7 +54,7 @@ export default function FarmerProfile(){
             <button type='button' className="button-farmerEdt" onClick={()=>navigate(`/updateFarmer/${id}`)}>Edit Details</button>
             <button type='button' className="button-farmerChange" onClick={()=>navigate(`/changePwdFarmer/${id}`)} >Change Password</button>
             <button type='button' className="button-farmerDelete" onClick={()=>deleteFarmer(id)}>Delete Account</button>
-            <button type='button' className="button-farmerDelete" onClick={'/additemfar'}>Add Item</button>
+            <Link to={'/createbid/'+idNo}><button type='button' className="button-farmerDelete">Add New Bid</button></Link>
             </div>
             <div className="col-md-9 farmerProfile-right">
                         <h3 className="farmerProfile-heading">Farmer Details</h3>

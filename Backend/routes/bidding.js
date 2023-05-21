@@ -12,6 +12,8 @@ router.route("/create").post((req,res)=>
     const idNo= Number(req.body.idNo);
     const bidID =("BID"+req.body.bidID);
     const phone= Number(req.body.phone);
+    let cusName = "No any Customer Available";
+    let cusPhone = "No any Customer Available";
     
 
     const newBidding = new Bidding( 
@@ -22,7 +24,9 @@ router.route("/create").post((req,res)=>
             price,
             farm,
             idNo,
-            phone
+            phone,
+            cusName,
+            cusPhone
         }
     )
 
@@ -50,11 +54,13 @@ router.route("/store").get((req,res)=>{
 router.route("/update/:id").put(async (req,res) => {
     let BIDID = req.params.id;
 
-        var {price} = req.body;
+        var {price,cusName,cusPhone} = req.body;
 
         const updateBidPrice = 
         {
-           price
+           price,
+           cusName,
+           cusPhone
         }
         const update = await Bidding.findByIdAndUpdate(BIDID, updateBidPrice)
         .then(()=>{
@@ -91,6 +97,22 @@ router.route("/select/:bidID").get(async(req,res)=>{
 }).patch((err)=>{
     console.log(err)
 })
+
+
+
+//fetch by idNo
+router.route("/select_own/:idNo").get(async(req,res)=>{
+    let idno = req.params.idNo;
+
+    const bid = await Bidding.find({idNo:idno})
+    .then((bidding)=>{
+        res.json(bidding)
+    })
+}).patch((err)=>{
+    console.log(err)
+})
+
+
 
 //----route of selected bid----done
 router.route("/fetch/:id").get(async(req,res)=>{

@@ -8,13 +8,14 @@ import axios from "axios";
 export default function CreateBids(){
     
     const {id} = useParams();
+    const {idNo} = useParams();
 
     const navigate = useNavigate()
     //create variebles to inputs
     const [itemName, setitemName] = useState("");
     const [bidID, setbidID] = useState("");
     const [quantity, setquantity] = useState("");
-    const [idNo, setidNo] = useState("");
+    // const [idNo, setidNo] = useState("");
     const [price, setprice] = useState("");
     const [farm, setfarm] = useState("");
     const [phone, setphone] = useState("");
@@ -31,9 +32,9 @@ export default function CreateBids(){
     // Fetch data
     function getBids() {
       axios
-        .get("http://localhost:8070/bidding/store")
+        .get("http://localhost:8070/bidding/select_own/"+idNo)
         .then((res) => {
-          setbids(res.data);
+        setbids(res.data);
         
         })
         .catch((err) => {
@@ -95,19 +96,6 @@ export default function CreateBids(){
           [e.target.name]: e.target.value
         });
       };
-
-      const handleSubmit = (e) => {
-        e.preventDefault();
-        axios
-        .put('http://localhost:8070/bidding/update/'+id, bidedit)
-        .then((response) => {
-            alert("Bid Updated");
-            navigate('/createbid');
-        })
-        .catch((error) => {
-            console.log(error);
-        });
-      };
     
     return(
         <div>
@@ -148,17 +136,19 @@ export default function CreateBids(){
                         </div>
 
                         <div className="form-group">
-                            <input type="number" className="bid-create" placeholder="ID No" maxLength={12}
-                            onChange={(e)=>{
-                                setidNo(e.target.value)
-                            }}></input>
+                            <input type="number" className="bid-create" placeholder="ID No" maxLength={12} value={idNo}
+                            // onChange={(e)=>{
+                            //     setidNo(e.target.value)
+                            // }}
+                            ></input>
                         </div>
 
                         <div className="form-group">
                             <input type="number" className="bid-create" placeholder="Mobile Number" maxLength="10" 
                             onChange={(e)=>{
                                 setphone(e.target.value)
-                            }}></input>
+                            }}
+                            ></input>
                         </div>
         
                         <div className="form-group">
@@ -178,7 +168,7 @@ export default function CreateBids(){
                         </div>
                     </form>
                     <div className="row">
-                            <button type="submit" onClick={()=>navigate(`/genaratereportbid`)} className="bid-create-btn">GENARATE REPORT</button>
+                            <button type="submit" onClick={()=>navigate(`/genaratereportbid/${idNo}`)} className="bid-create-btn">GENARATE REPORT</button>
                         </div>
                 </div>
 
@@ -208,7 +198,7 @@ export default function CreateBids(){
                                                             <td className="bid-details-width">{i.itemName}</td>
                                                             <td className="bid-details-width">{i.price+"LKR"}</td>
                                                             <td className="bid-details-width">{i.quantity+"kg"}</td>
-                                                            <td className="bid-details-width" ><Link to={`/biddetails/${i._id}`}><button type="button" className="bid-btn-showmore">SHOW MORE</button></Link></td>
+                                                            <td className="bid-details-width" ><Link to={`/biddetailsfarmer/${i._id}`}><button type="button" className="bid-btn-showmore">SHOW MORE</button></Link></td>
                                                             <td className="bid-details-width" ><button type="button" className="bid-btn-delete" onClick={()=>deletedata(i)} >DELETE</button></td>
                                                             
                                                         </tr>

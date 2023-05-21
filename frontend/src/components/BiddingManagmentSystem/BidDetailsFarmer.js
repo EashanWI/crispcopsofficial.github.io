@@ -2,14 +2,14 @@ import React,{useState, useEffect} from "react";
 import axios from "axios"
 import { useParams, Link, useNavigate } from "react-router-dom";
 
-export default function BidDetails(){
+export default function BidDetailsFarmer(){
 
     const navigate = useNavigate();
     const {id} = useParams();
     const [price, setprice] = useState("");
     const [cusName, setcusName] = useState("");
     const [cusPhone, setcusPhone] = useState("");
-    
+    let subtotal = price;
     //const [bidedit, sebidedit] = useState("");
 
     const [bids , setbids] = useState({
@@ -35,28 +35,8 @@ export default function BidDetails(){
         getBids();
       }, []);
 
-    function updateData(e){
-        e.preventDefault();
-
-
-        //create javascript obj
-        const updateBidding = {
-            price,
-            cusName,
-            cusPhone
-        }
-    
-
-        axios.put("http://localhost:8070/bidding/update/"+id ,updateBidding).then(()=>{
-            alert("BIdding Update Succsesful")
-            navigate('/payment/'+subtotal)
-        })
-        .catch((err)=>{
-            alert("Somthing went wrong")
-        });
-    };
     let total = bids.quantity * bids.price;
-    let subtotal = price*bids.quantity;
+
 
     return(
         <div className="container bid-update-box">
@@ -142,6 +122,15 @@ export default function BidDetails(){
                         </div>
                     </div>
 
+                    <div className="row">
+                        <div className="col-md-6">
+                            <p>Contact Customer :</p>
+                        </div>
+                        <div className="col-md-6">
+                            <p>{"+94"+bids.cusPhone}</p>
+                        </div>
+                    </div>
+
 
                         </div>
 
@@ -153,32 +142,9 @@ export default function BidDetails(){
                     </div>
                     </div>
 
-                    <form  onSubmit={updateData}>
-                        <div className="row">
-                        <input type="number" placeholder="Set Your Price" className="bid-update-input" required
-                            onChange={(e)=>{
-                                if(price<setprice(e.target.value));
-                            }}
-                            ></input>
-
-                        <input type="text" placeholder="Enter Your Name" className="bid-update-input" required
-                            onChange={(e)=>{
-                                setcusName(e.target.value);
-                            }}
-                            ></input>
-
-                        <input type="number" placeholder="Enter Your Mobile Number" className="bid-update-input" required
-                            onChange={(e)=>{
-                                setcusPhone(e.target.value);
-                            }}
-                            ></input>
-                        </div>
-                        <div className="row">
-                            <button type="submit" className="bid-btn-update">SET PRICE</button>
-                        </div>
-                    </form>
+                    
                     <div className="row">
-                           <Link to={'/bidstore'}><button className="bid-btn-cencel">Cancel</button></Link>
+                           <Link to={'/createbid/'+bids.idNo}><button className="bid-btn-cencel">BACK</button></Link>
                         </div>
                 </div>
             </div>

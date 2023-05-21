@@ -124,7 +124,6 @@ export default function CustomerReportAdmin(){
                             <div className="col-md-5">
                                 <h2>ADMIN CUSTOMER REPORT</h2>     
                             </div>
-                            <div className="">
                                     <div className="col-md-4">
                                         <div className="">
                                             <input type="text" className="bid-report-search-admin" placeholder="Search" value={searchInput}
@@ -135,7 +134,6 @@ export default function CustomerReportAdmin(){
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
                             </div>
                             <div className="col-md-2">
                                 <button  className="bid-btn-genreport-admin" onClick={handlePdfGeneration}>

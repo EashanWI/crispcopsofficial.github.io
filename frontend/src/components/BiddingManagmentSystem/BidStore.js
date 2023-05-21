@@ -57,6 +57,8 @@ export default function BidStore(){
                 <h1>CRIPS CROPS BIDS</h1>
                 <h4>Buy and Sell you wont</h4>
             </div>
+
+            
             <div className="container">
                 
             <div className="row bid-mar">

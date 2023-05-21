@@ -1,6 +1,6 @@
 //import react
 import React,{useState,useEffect} from "react";
-import {Link} from "react-router-dom";
+import {Link,useParams} from "react-router-dom";
 //import axios
 import axios from "axios"; 
 import jsPDF from 'jspdf' ;
@@ -9,7 +9,7 @@ import 'jspdf-autotable';
 export default function BidReport(){
 
     
-            
+        const {idNo} = useParams();    
         const [users, setUsers] = useState([]);
         const [searchInput, setSearchInput] = useState("");
 
@@ -24,12 +24,12 @@ export default function BidReport(){
                 });
             } else {
               axios
-                .get('http://localhost:8070/bidding/store')
+                .get(`http://localhost:8070/bidding/select_own/${idNo}`)
                 .then((res) => {
                     setUsers(res.data);
                 })
                 .catch((err) => {
-                  alert(err.message);
+                //   alert(err.message);
                 });
             }
           }
@@ -43,7 +43,7 @@ export default function BidReport(){
 
         function getUsers() {
             axios
-            .get("http://localhost:8070/bidding/store")
+            .get(`http://localhost:8070/bidding/select_own/${idNo}`)
             .then((res) => {
                 setUsers(res.data);
             })
