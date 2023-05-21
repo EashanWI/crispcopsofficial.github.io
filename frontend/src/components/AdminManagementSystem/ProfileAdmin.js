@@ -139,7 +139,7 @@ export default function ProfileAdmin() {
             <div className="row">
             <div className="col-md-3"></div>
               <div className="col-md-6">
-                <button type="submit"  className="admn-log-btn">LOGIN</button>
+                <button type="submit"  className="admn-log-btn">ADD NEW</button>
               </div>
               <div className="col-md-3"></div>
             </div>

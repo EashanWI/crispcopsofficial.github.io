@@ -23,6 +23,18 @@ export default function Ofertable() {
       });
   }
 
+  //delete all
+  function deleteAllData(){
+    axios
+      .delete("http://localhost:8070/payment/deleteAll")
+      .then((res) => {
+        setUsers(res.data.existingPosts);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+
   function handlePdfGeneration() {
     const doc = new jsPDF();
 
@@ -30,10 +42,10 @@ export default function Ofertable() {
     const companyName = '                                                Crips Crops Payments';
 
     // Set table header
-    const header = [["Name", "Phone", "Address", "City"]];
+    const header = [["Name", "Phone", "Payed Total", "date"]];
 
     // Add data rows
-    const data = users.map(user => [user.name, user.phone, user.address, user.city]);
+    const data = users.map(user => [user.name, user.phone, user.subtotal+" LKR", user.Date]);
 
     // Add table to document
     doc.autoTable({ head: header, body: data });
@@ -42,13 +54,13 @@ export default function Ofertable() {
     doc.text(companyName, 10, 10);
 
     // Download the PDF document
-    doc.save('payment_report.pdf');
+    doc.save('payment_History.pdf');
   }
 
   return (
     <center>
       <br></br>
-      <h1>Payment Report</h1>
+      <h1>Payment History Report</h1>
      <br></br>
       
       <div className='box'>
@@ -58,8 +70,8 @@ export default function Ofertable() {
               <tr>
                 <th><b>Name</b></th>
                 <th><b>Phone Number</b></th>
-                <th><b>Address</b></th>
-                <th><b>City</b></th>
+                <th><b>Payed Total</b></th>
+                <th><b>Date</b></th>
               </tr>
             </thead>
             <tbody>
@@ -67,20 +79,24 @@ export default function Ofertable() {
                 <tr key={index}>
                   <td>{user.name}</td>
                   <td>{user.phone}</td>
-                  <td>{user.address}</td>
-                  <td>{user.city}</td>
+                  <td>{user.subtotal}</td>
+                  <td>{user.Date}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         ) : (
-          <p>No users found.</p>
+          <p>No any Payments.</p>
         )}
 
         <br></br>
         
         <button type='button' onClick={handlePdfGeneration} className="btn btn-primary">
           Generate PDF
+        </button>
+        <p><br></br></p>
+        <button type='button' onClick={deleteAllData} className="btn btn-primary">
+          DELETE ALL
         </button>
         <br></br><br></br>
 

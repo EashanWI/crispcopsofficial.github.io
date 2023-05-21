@@ -12,23 +12,18 @@ const paymentSchema = new Schema({
             type : Number,
             required: true
         },
-        address : {
-            type : String,
-            required : true
-        },
-        cardNo : {
-            type : String,
-            required :true
-        },
-        CVV : {
+
+        /*qty :{
             type : Number,
             required: true
+        },*/
+
+        subtotal : {
+            type : Number,
+            required :true
         },
-        expDate :{
-            type : String,
-            required: true
-        },
-        city :{
+        
+        Date :{
             type : String,
             required: true
         }

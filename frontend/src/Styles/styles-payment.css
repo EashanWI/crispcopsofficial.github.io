@@ -176,4 +176,20 @@
     padding-left: 50px;
 }
 
+.pay-input-box
+{
+    background-color: aliceblue;
+    color: rgb(61, 61, 60);
+    width: 100%;
+    border: none;
+    height: 50px;
+    margin: 15px;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.pay-sub-total
+{
+    font-size: 25px;
+}
 

@@ -9,11 +9,9 @@ router.post('/add',(req,res) =>{
 
     const name = req.body.name;
     const phone = Number(req.body.phone);
-    const address = req.body.address;
-    const cardNo = Number(req.body.cardNo);
-    const CVV = Number(req.body.CVV);
-    const expDate = Number(req.body.expDate);
-    const city = req.body.city;
+    //const quantity = Number(req.body.qty);
+    const price = Number(req.body.subtotal);
+    const date = Number(req.body.Date);
 
     newPost.save((err) =>{
         if(err){
@@ -183,7 +181,18 @@ router.route("/get/:id").get(async(req,res)=>{
     console.log(err)
 })
 
+router.route("/deleteAll").delete(async(req, res) =>{
 
+    // let userId = req.params.id
+
+    await payment.deleteMany()
+    .then(() => {
+        res.status(200).send({status:"All Payments are deleted"});
+    }).catch((err) => {
+        console.log(err.messege);
+        res.status(500).send({status: "Error with delete details", error: err.messege})
+    })
+})
 
 
 module.exports = router;

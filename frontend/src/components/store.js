@@ -9,6 +9,7 @@ import axios from "axios";
 export default function Store(){
     const [users, setUsers] = useState([]);
     const [searchInput, setSearchInput] = useState("");
+    const [qty, setqty] = useState("");
   
     function getUsers() {
       axios
@@ -26,22 +27,9 @@ export default function Store(){
       getUsers();
     }, []);
   
-    function handlePdfGeneration() {
-      const doc = new jsPDF();
-  
-      // Set table header
-      const header = [["Id", "famer Name", "Item Name", "Quantity", "Buying Unit price", "Date",]];
-  
-      // Add data rows
-      const data = users.map(user => [user.ItemId, user.famer, user.ItemName, user.quantity, user.price,user.sdate,user.total]);
-  
-      // Add table to document
-      doc.autoTable({ head: header, body: data });
-  
-      // Download the PDF document
-      doc.save('Stocks.pdf');
-    }
+    
     let total = 0;
+    let subtotal = 0;
   return (
     <body container>
         <section id="content">
@@ -76,13 +64,18 @@ export default function Store(){
                         <tbody>
                         {users.map((i, index) => {
                            total = i.price+i.price*20/100;
+                           subtotal = qty * total;
                             return (
                                 <tr key={index}>
                                 <td className="stk-tableb">{i.ItemId}</td>
                                 <td className="stk-tableb">{i.ItemName}</td>
                                 <td className="stk-tableb">{total+"LKR"}</td>
                                 <td className="stk-tableb">{i.sdate}</td>
-                                <td className="stk-tableb"><Link to={'/Payment'}><button className="bid-btn-buy">Buy</button></Link></td>
+                                <td className="stk-tableb"><input type="number" placeholder="quantity in kg"
+                                onChange={(e)=>{
+                                  setqty(e.target.value);
+                              }}></input></td>
+                                <td className="stk-tableb"><Link to={'/Payment/'+subtotal}><button className="bid-btn-buy">Buy</button></Link></td>
                                 </tr>
                             )
                         })}

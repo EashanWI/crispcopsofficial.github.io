@@ -27,7 +27,7 @@ export default function LoginCustomer(){
 
     function login(e){
         e.preventDefault();
-        axios.post("http://localhost:8070/customer/login",credentials)
+        axios.post("http://localhost:8070/customer/loginCustomer",credentials)
         .then((res)=>{
             if(res.status == 200){
                 localStorage.setItem('customer',res.data.data)

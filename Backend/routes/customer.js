@@ -98,7 +98,7 @@ router.route ("/get/:id").get(async(req,res) => {
 })
 
 //login
-router.route("/login").post(async(req,res) => {
+router.route("/loginCustomer").post(async(req,res) => {
 
     try{
         const email = req.body.email;

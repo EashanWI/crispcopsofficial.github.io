@@ -9,8 +9,9 @@ export default function LoginFarmer(){
 
     const[showPassword, setShowPassword] = React.useState (false)
     const[credentials, setCredentials] = React.useState({
-        email:"",
-        pwd:""
+        email : " ",
+        pwd : " ",
+        email : " "
     })
 
     console.log(credentials)
@@ -27,7 +28,7 @@ export default function LoginFarmer(){
 
     function login(e){
         e.preventDefault();
-        axios.post("http://localhost:8070/farmer/login",credentials)
+        axios.post("http://localhost:8070/farmer/loginFarmer",credentials)
         .then((res)=>{
             if(res.status == 200){
                 localStorage.setItem('farmer',res.data.data)

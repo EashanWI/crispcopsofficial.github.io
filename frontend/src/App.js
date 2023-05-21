@@ -112,9 +112,9 @@ function App() {
           <Routes>
 
             {/*Admin Managment System*/}
-            <Route path='/adminProfile' exact element={<ProfileAdmin/>}></Route>
+            <Route path='/createadmin' exact element={<ProfileAdmin/>}></Route>
             <Route path='/ManageAdmin' exact element={<ManageAdmin/>}></Route>
-            <Route path='/AdminDashboard' exact element={<AdminDashboard/>}></Route>
+            <Route path='/AdminDashboard/:id' exact element={<AdminDashboard/>}></Route>
             <Route path='/EditAdmin/:id' exact element={<EditAdmin/>}></Route>
             <Route path='/Adminreport' exact element={<AdminRepogen/>}></Route>
             <Route path='/admin' exact element={<AdminLogin/>}></Route>
@@ -176,7 +176,7 @@ function App() {
 
 
             {/* Payment Managment System */}
-              <Route path='/Payment' exact element = {<Payment/>} />
+              <Route path='/Payment/:subtotal' exact element = {<Payment/>} />
               <Route path='/editpayment/:id' exact Component = {EditPayment} />
               <Route path='/paymentview' exact Component ={Paymentview} />
               <Route path='/report' exact Component={handlePdfGeneration}/>

@@ -96,14 +96,14 @@ router.route("/get/:id").get(async(req,res) => {
 })
  
 //login
-router.route("/login").post(async(req,res) => {
+router.route("/loginFarmer").post(async(req,res) => {
 
     try{
         const email = req.body.email;
         const pwd = req.body.pwd;
         console.log(email)
-        const farmer = await Farmer.findOne({email: email,pwd:pwd})
-        res.status(200).json({data: farmer, status:200});
+        const newfarmer = await Farmer.findOne({email: email,pwd:pwd})
+        res.status(200).json({data: newfarmer, status:200});
     }catch(err){
         res.status(500).json({message: err.message});
     }
