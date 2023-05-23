@@ -30,6 +30,11 @@ const biddingSchema = new Schema(
             required :true
         },
 
+        setPrice : {
+            type : Number,
+            required :true
+        },
+
         //farmer Name
         idNo : {
             type : String,

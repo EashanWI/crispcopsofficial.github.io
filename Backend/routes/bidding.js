@@ -13,6 +13,7 @@ router.route("/create").post((req,res)=>
     const bidID =("BID"+req.body.bidID);
     const phone= Number(req.body.phone);
     let cusName = "No any Customer Available";
+    let setPrice = price;
     let cusPhone = "No any Customer Available";
     
 
@@ -26,6 +27,7 @@ router.route("/create").post((req,res)=>
             idNo,
             phone,
             cusName,
+            setPrice,
             cusPhone
         }
     )
@@ -54,11 +56,11 @@ router.route("/store").get((req,res)=>{
 router.route("/update/:id").put(async (req,res) => {
     let BIDID = req.params.id;
 
-        var {price,cusName,cusPhone} = req.body;
+        var {setPrice,cusName,cusPhone} = req.body;
 
         const updateBidPrice = 
         {
-           price,
+           setPrice,
            cusName,
            cusPhone
         }
