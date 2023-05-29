@@ -35,7 +35,7 @@ function sendData(e){
     alert("stock add succesful");
     navigate('/ManageItems')
   }).catch((err)=>{
-    alert("unsucrssfull")
+    alert("unsuccesfull")
   })
 
 }
