@@ -46,15 +46,15 @@ export default function Payment() {
               <p className="pay-sub-total">Your Sub total is {subtotal} LKR</p>
               <p>Pleace fill this form for complete your order.</p>
             </div>
-            <input type="text" className="row pay-input-box" placeholder="Full Name" 
+            <input type="text" className="row pay-input-box" placeholder="Full Name " 
             onChange={(e)=>{
               setname(e.target.value);
           }}></input>
-            <input type="number" className="row pay-input-box" placeholder="Mobile Number"
+            <input type="number" className="row pay-input-box" placeholder="Mobile Number "
             onChange={(e)=>{
               setphone(e.target.value);
           }}></input>
-            <input type="date" className="row pay-input-box" placeholder="date" 
+            <input type="date" className="row pay-input-box" placeholder="date " 
             onChange={(e)=>{
               setDate(e.target.value);
           }}></input>
