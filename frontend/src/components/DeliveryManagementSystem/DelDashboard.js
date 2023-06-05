@@ -2,6 +2,7 @@ import React from "react";
 import delivery_guy from "./delivery_guy.png";
 import { useNavigate, Link } from "react-router-dom";
 
+//deldashboard
 export default function DelDashboard(){
 
     const navigate = useNavigate()
